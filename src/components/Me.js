@@ -8,7 +8,7 @@ function Me() {
       <div>
         {isLoggedIn ? (
           <div>
-            <h1>Welcome to the Me page!</h1>
+            <h1>Welcome!</h1>
             <p>Your role is: {userRole}</p>
           </div>
         ) : (
