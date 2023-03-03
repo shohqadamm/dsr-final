@@ -14,3 +14,21 @@ function App() {
   </Routes>
 }
 export default App;
+
+//how to create reactjs login form with validation and redux?
+// const App = () => {
+//     const isLoggedIn = localStorage.getItem("jwtToken") !== null ? true: false
+
+//     return (
+//     <Router>
+        
+//         <Switch>
+//             <PrivateRoute isLoggedIn={isLoggedIn} path="/dashboard">
+//                 <Dashboard />
+//             </PrivateRoute>
+//             <Route path="/login">
+//                 <Login authToken={authToken} />
+//             </Route>
+//         </Switch>
+//     </Router>
+// );
