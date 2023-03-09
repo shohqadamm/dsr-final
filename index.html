@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="pay(100)">Оплатить</button>
+    <script src="https://static.paybox.money/v1/paybox/pbwidget.js"></script>
+    <script>
+        (function (p, a, y, b, o, x) {
+            o = p.createElement(a);
+            x = p.getElementsByTagName(a)[0];
+            o.async = 1;
+            o.src = 'https://static.paybox.money/v1/paybox/pbwidget.js?' + 1 * new Date();
+            x.parentNode.insertBefore(o, x);
+        })(document, 'script');
+
+         function pay(amount) {
+                var data = {
+                    token: 'lWoU99FT9zmsYD4c',
+                    payment: {
+                        amount: amount,
+                        language: 'ru', // Язык виджета
+                        description: 'Описание заказа',
+                    },
+                    successCallback: function (payment) {
+                        console.log(payment) // Данные о платеже
+                    },
+                    errorCallback: function (payment) {
+                        console.log(payment) // Данные о платеже
+                    }
+                }
+
+                var widget = new Paybox(data);
+                widget.create();
+            }
+    </script>
+</body>
+</html>

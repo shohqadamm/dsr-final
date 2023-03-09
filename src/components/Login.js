@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye, faEyeSlash, faUser, faLock } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -14,7 +14,7 @@ function Login() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await fetch('http://localhost:3000/api/v1/login', {
+      const response = await fetch('http://localhost:3000/api/v1/login', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -23,17 +23,14 @@ function Login() {
           'Access-Control-Allow-Origin': 'http://localhost:3000'
         },
         body: JSON.stringify({ login: username, password: password })
-      }).then(response => {
-        if (response.ok) {
-          localStorage.setItem('isLoggedIn', true);
+      });
+      const data = await response.json();
+      const userRole = data.role;
 
-          const data = response.json();
-          const userRole = data.role;
-          localStorage.setItem('userRole', userRole);
+      localStorage.setItem('isLoggedIn', true);
+      localStorage.setItem('userRole', userRole);
 
-          navigate('/todos');
-        }
-      })
+      navigate('/me')
     } catch (error) {
       setError(error.message);
     }

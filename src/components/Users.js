@@ -43,6 +43,7 @@ function Users() {
   }
 
   return (
+    // if()
     <div className='app'>
       <div className="account">
         <button className='btn btn--primary' onClick={Logout}>Logout</button>
@@ -51,7 +52,7 @@ function Users() {
       <ul>
         {users.map(user => (
           <li key={user.id}>
-            {user.name}
+            {user.name} {' '} {user.role}
           </li>
         ))}
       </ul>
