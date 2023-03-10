@@ -36,8 +36,9 @@ function Todos() {
       setTitle('');
       setDescription('');
       fetchTodos();
+      toast.success('todo added')
     } else {
-      alert('todo title must be unique')
+      toast.error('Todo title must be unique')
     }
   }
 
@@ -159,8 +160,8 @@ function Todos() {
 
             <h1 className="text-grey-darkest text-4xl font-bold mt-5">Add todo</h1>
             <form onSubmit={addTodo} className="flex mt-4">
-              <input className='shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker' value={todoTitle} type="text" onChange={event => setTitle(event.target.value)} placeholder="title" />
-              <input className='shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker' value={todoDescription} type="text" onChange={event => setDescription(event.target.value)} placeholder="description" />
+              <input className='shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker' required value={todoTitle} type="text" onChange={event => setTitle(event.target.value)} placeholder="title" />
+              <input className='shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker' required value={todoDescription} type="text" onChange={event => setDescription(event.target.value)} placeholder="description" />
               <button className='flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-orange-400' type="submit">Add</button>
             </form>
             {
