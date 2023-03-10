@@ -60,7 +60,7 @@ function Todos() {
         setTodos(data);
       })
       .catch(error => {
-        setError(error.message);
+        toast.error(error.message)
       });
   }
 
@@ -110,8 +110,6 @@ function Todos() {
         setDescription(todo.description)
       }
     })
-    todos.map(todo => console.log(todo.title))
-
     todos.map(todo => todo.id === id ? setTitle(todo.title) : '')
     todos.map(todo => todo.id === id ? setDescription(todo.description) : '')
   };
@@ -132,10 +130,10 @@ function Todos() {
         <button className='flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red-500' onClick={Logout}>Logout</button>
         <Link className='flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red hover:text-white hover:bg-red-500' to="/me">Home</Link>
       </div>
-      <div class="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
-        <div class="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
-          <div class="mb-4">
-            <h1 class="text-grey-darkest text-4xl font-bold">Todo List</h1>
+      <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">
+        <div className="bg-white rounded shadow p-6 m-4 w-full lg:w-3/4 lg:max-w-lg">
+          <div className="mb-4">
+            <h1 className="text-grey-darkest text-4xl font-bold">Todo List</h1>
             <ul>
               {todos.map(todo => {
                 // if (localStorage.getItem('userRole') === 'user') {
@@ -159,7 +157,7 @@ function Todos() {
               )}
             </ul>
 
-            <h1 class="text-grey-darkest text-4xl font-bold mt-5">Add todo</h1>
+            <h1 className="text-grey-darkest text-4xl font-bold mt-5">Add todo</h1>
             <form onSubmit={addTodo} className="flex mt-4">
               <input className='shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker' value={todoTitle} type="text" onChange={event => setTitle(event.target.value)} placeholder="title" />
               <input className='shadow appearance-none border rounded w-full py-2 px-3 mr-4 text-grey-darker' value={todoDescription} type="text" onChange={event => setDescription(event.target.value)} placeholder="description" />

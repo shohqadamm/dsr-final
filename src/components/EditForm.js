@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
-// library imports
-
-const EditForm = ({ editedTask, updateTask, closeEditMode, fetchTodos }) => {
+const EditForm = ({ editedTask, closeEditMode, fetchTodos }) => {
   const [updatedTaskName, setUpdatedTaskName] = useState(editedTask.title);
   const [updatedTaskDescription, setUpdatedTaskDescription] = useState(editedTask.description);
 
@@ -20,7 +19,6 @@ const EditForm = ({ editedTask, updateTask, closeEditMode, fetchTodos }) => {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // updateTask({ ...editedTask, title: updatedTaskName, description: updatedTaskDescription })
     const response = await fetch('http://localhost:3000/api/v1/todos/' + editedTask.id, {
       method: 'PUT',
       headers: {
@@ -34,12 +32,14 @@ const EditForm = ({ editedTask, updateTask, closeEditMode, fetchTodos }) => {
     if (response.ok) {
       fetchTodos()
       closeEditMode()
+      toast.success('Todo updated')
     }
 
   }
 
   return (
     <>
+      <ToastContainer />
       <div className='fixed inset-0 z-10 overflow-y-auto'>
         <div
           className="fixed inset-0 w-full h-full bg-black opacity-40"
